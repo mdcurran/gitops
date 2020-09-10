@@ -39,7 +39,13 @@ function install_flux {
         --git-user=${GHUSER} \
         --git-email=${GHUSER}@users.noreply.github.com \
         --git-url=git@github.com:${GHUSER}/${GHREPO} \
+        --git-path=namespaces,workloads \
         --namespace=flux | kubectl apply -f -
+
+    # Wait for the flux rollout to complete
+    kubectl -n flux rollout status deployment/flux
+
+    echo "Flux installed!"
 }
 
 function main {
