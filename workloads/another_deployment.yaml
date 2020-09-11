@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: hello-world-again
   namespace: apps
   labels:
-    apps: hello-world
+    apps: hello-world-again
   annotations:
     fluxcd.io/automated: "true"
 spec:
