@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-again
+  namespace: apps
+  labels:
+    apps: hello-world-again
+  annotations:
+    fluxcd.io/automated: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-again
+  template:
+    metadata:
+      labels:
+        app: hello-world-again
+    spec:
+      containers:
+        - name: hello-world
+          image: mdcurran/hello-world:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 10m
+              memory: 64Mi
